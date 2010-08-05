@@ -1,0 +1,18 @@
+This is simdpy, a python wrapper for SimD.  SimD is a simple C++ DDS API, which is built around the
+OpenSplice DDS framework.
+For more information about SimD, see http://code.google.com/p/simd-cxx.
+For more information about OpenSplice, see http://www.opensplice.org.
+
+I'll add more documentation as I get around to it.
+For the time being, you'll need SimD and OpenSplice installed, and
+the following environment variables set:
+OSPL_HOME
+SIMD_INSTALL_DIR
+OSPL_TMPL_PATH
+
+To build, you'll need cmake, and $OSPL_HOME/bin in your PATH.
+To run, you'll need $OSPL_HOME/lib and $SIMD_INSTALL_DIR/lib in your LD_LIBRARY_PATH.
+
+simdpy is released under the LGPL license, the same as SimD and OpenSplice.
+Thanks to the PrismTech folks for making an open source DDS package to play with.
+
