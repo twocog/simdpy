@@ -13,6 +13,7 @@ void create_ddsbaseqos()
 {
   void (RegularTopicQos::*topic_set_reliable)(void) = &RegularTopicQos::set_reliable;
   void (RegularWriterQos::*writer_set_reliable)(void) = &RegularWriterQos::set_reliable;
+  void (RegularReaderQos::*reader_set_reliable)(void) = &RegularReaderQos::set_reliable;
 
   bpython::class_< RegularTopicQos >("BaseTopicQos", bpython::init<>())
     .def( "set_transient", &RegularTopicQos::set_transient )
@@ -23,6 +24,11 @@ void create_ddsbaseqos()
     .def( "set_transient", &RegularWriterQos::set_transient )
     .def( "set_reliable", writer_set_reliable)
     .def( "set_keep_last", &RegularWriterQos::set_keep_last )
+  ;
+
+  bpython::class_< RegularReaderQos >("BaseReaderQos", bpython::init<>())
+    .def( "set_transient", &RegularReaderQos::set_transient )
+    .def( "set_reliable", reader_set_reliable)
   ;
 }
 
@@ -35,6 +41,14 @@ void create_ddswriterqos()
 {
   bpython::class_<dds::DataWriterQos, bpython::bases< RegularWriterQos > >("DDSWriterQos", bpython::init< const dds::TopicQos& >())
     .def( "set_auto_dispose", &dds::DataWriterQos::set_auto_dispose )
+  ;
+}
+
+void create_ddsreaderqos()
+{
+  bpython::class_<dds::DataReaderQos, bpython::bases< RegularReaderQos > >("DDSReaderQos", bpython::init< const dds::TopicQos& >())
+    .def( "set_exclusive", &dds::DataReaderQos::set_exclusive )
+    .def( "set_shared", &dds::DataReaderQos::set_shared )
   ;
 }
 

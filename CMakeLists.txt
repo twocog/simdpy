@@ -14,8 +14,7 @@ add_custom_command( OUTPUT ${${inputidl}outfiles}
 add_library( ${inputidl}ddsdata ${${inputidl}outfiles} )
 endmacro()
 
-set(DEFINITIONS "-DNDEBUG -O5 -pipe -std=c++0x")
-
+add_definitions( -DNDEBUG -O5 -pipe -std=c++0x )
 
 include_directories( /usr/include/python2.6 ${CMAKE_BINARY_DIR} $ENV{SIMD_INSTALL_DIR}/include $ENV{OSPL_HOME}/include/dcps/C++/SACPP $ENV{OSPL_HOME}/include $ENV{OSPL_HOME}/include/sys )
 

@@ -4,6 +4,7 @@
 void create_ddsbaseqos();
 void create_ddstopicqos();
 void create_ddswriterqos();
+void create_ddsreaderqos();
 
 #endif
 
