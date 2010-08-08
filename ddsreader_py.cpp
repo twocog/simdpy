@@ -17,6 +17,7 @@ typedef dds::DataReader< swatch::hello > HelloReader;
 void create_hellotype()
 {
   DDS::ULong ( swatch::helloSeq::*helloseq_length )() const = &swatch::helloSeq::length;
+  const swatch::hello& ( swatch::helloSeq::*op_bracket )( DDS::ULong ) const = &swatch::helloSeq::operator[];
 
   bpython::class_< swatch::hello >( "SwatchHello", bpython::init<>() )
     .def_readwrite( "name", &swatch::hello::name )
@@ -29,6 +30,7 @@ void create_hellotype()
   bpython::class_< swatch::helloSeq >( "HelloSeq", bpython::init<>() )
     .def( "__len__", helloseq_length )
     .def( "length", helloseq_length )
+    .def( "get", op_bracket, bpython::return_value_policy<bpython::copy_const_reference>() )
   ;
 
   bpython::class_< DDS::SampleInfoSeq >( "SampleInfoSeq", bpython::init<>() );
@@ -50,6 +52,7 @@ void create_ddsreader()
 
   bpython::class_< HelloReader >( "HelloReader", bpython::init< const dds::Topic< swatch::hello >&, const dds::DataReaderQos& >())
     .def( "read", hello_read )
+    .def( "return_loan", &HelloReader::return_loan )
   ;
 }
 

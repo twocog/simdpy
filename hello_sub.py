@@ -20,6 +20,9 @@ while 1:
     time.sleep(1)
     if samples.length() > 0:
         print 'Got samples: ', str(samples.length())
+        for i in range(samples.length()):
+            print 'Sample %s: %s' % (i, str(samples.get(i).name))
     else:
         print 'No samples.'
+    hello_reader.return_loan( samples, infos )
 

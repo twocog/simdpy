@@ -12,9 +12,10 @@ dwqos = simdpy.DDSWriterQos(tqos)
 
 hello_writer = simdpy.HelloWriter( hello_topic, dwqos )
 
-hello_sample = simdpy.create_hello('aloha.')
+hello_sample = simdpy.create_hello('')
 
 for i in range(100):
+    hello_sample.name.set( 'aloha : ' + str(i) )
     hello_writer.write( hello_sample )
     time.sleep(1)
 
