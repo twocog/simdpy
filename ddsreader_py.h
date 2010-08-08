@@ -3,7 +3,7 @@
 
 void create_ddswriter();
 void create_ddsreader();
-void create_hello();
+void create_hellotype();
 
 #endif
 

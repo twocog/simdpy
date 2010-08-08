@@ -1,5 +1,6 @@
 #include <boost/python.hpp>
 
+#include "ddsbase_py.h"
 #include "ddsruntime_py.h"
 #include "ddsreader_py.h"
 #include "ddsqos_py.h"
@@ -9,7 +10,8 @@ namespace bpython = boost::python;
 
 BOOST_PYTHON_MODULE(simdpy)
 {
-  create_hello();
+  create_ddsstrings();
+  create_hellotype();
   create_ddsruntime();
   create_ddsbaseqos();
   create_ddstopicqos();

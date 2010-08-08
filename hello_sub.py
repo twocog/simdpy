@@ -19,7 +19,7 @@ while 1:
     hello_reader.read( samples, infos )
     time.sleep(1)
     if samples.length() > 0:
-        print 'Got samples: ', str(len(samples))
+        print 'Got samples: ', str(samples.length())
     else:
         print 'No samples.'
 

@@ -14,17 +14,20 @@ namespace bpython = boost::python;
 typedef dds::DataWriter< swatch::hello > HelloWriter;
 typedef dds::DataReader< swatch::hello > HelloReader;
 
-void create_hello()
+void create_hellotype()
 {
   DDS::ULong ( swatch::helloSeq::*helloseq_length )() const = &swatch::helloSeq::length;
 
-  bpython::class_< swatch::hello >( "SwatchHello", bpython::init<>() );
+  bpython::class_< swatch::hello >( "SwatchHello", bpython::init<>() )
+    .def_readwrite( "name", &swatch::hello::name )
+  ;
 
   bpython::class_< dds::Topic< swatch::hello > >( "HelloTopic", bpython::init< const std::string&, const dds::TopicQos& >() );
 
   bpython::class_< swatch::helloSeq_uniq_ >( "HelloSeqUniq", bpython::init<>() );
 
   bpython::class_< swatch::helloSeq >( "HelloSeq", bpython::init<>() )
+    .def( "__len__", helloseq_length )
     .def( "length", helloseq_length )
   ;
 

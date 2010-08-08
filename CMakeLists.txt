@@ -5,8 +5,6 @@ file( GLOB pysrcs "*.cpp" )
 macro( buildidl inputidl )
 set( ${inputidl}outfiles gen/ccpp_${inputidl}.h gen/${inputidl}.cpp gen/${inputidl}Dcps.cpp gen/${inputidl}Dcps.h gen/${inputidl}Dcps_impl.cpp gen/${inputidl}Dcps_impl.h gen/${inputidl}.h gen/${inputidl}SplDcps.cpp gen/${inputidl}SplDcps.h )
 
-message( "Outfiles: " ${${inputidl}outfiles} )
-
 add_custom_command( OUTPUT ${${inputidl}outfiles}
                     COMMAND idlpp -I ${CMAKE_SOURCE_DIR} -S -l cpp -d gen ${CMAKE_SOURCE_DIR}/${inputidl}.idl
                     DEPENDS ${CMAKE_SOURCE_DIR}/${inputidl}.idl )
